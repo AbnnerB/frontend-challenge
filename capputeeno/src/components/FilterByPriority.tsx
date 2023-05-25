@@ -1,6 +1,8 @@
 import { styled } from "styled-components";
 import { ArrowIcon } from "./icons/arrow-icon";
 import { useState } from "react";
+import { useFilter } from "@/hooks/useFilter";
+import { PriorityTypes } from "@/types/priorityTypes";
 
 const FilterContainer = styled.div`
   display: flex;
@@ -21,6 +23,8 @@ const FilterContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    gap: 16px;
   }
 `;
 
@@ -53,7 +57,14 @@ const PriorityFilter = styled.ul`
 export default function FilterByPriority() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { setPriority } = useFilter();
+
   const handleOpen = () => setIsOpen((prev) => !prev);
+
+  const handleUpdate = (value: PriorityTypes) => {
+    setPriority(value);
+    setIsOpen(false);
+  };
 
   return (
     <FilterContainer>
@@ -63,10 +74,16 @@ export default function FilterByPriority() {
 
       {isOpen && (
         <PriorityFilter>
-          <li>Novidades</li>
-          <li>Preco: Maior - menor</li>
-          <li>Preço: Menor - maior</li>
-          <li>Mais vendidos</li>
+          <li onClick={() => handleUpdate(PriorityTypes.NEWS)}>Novidades</li>
+          <li onClick={() => handleUpdate(PriorityTypes.BIGGEST_PRICE)}>
+            Preco: Maior - menor
+          </li>
+          <li onClick={() => handleUpdate(PriorityTypes.MINOR_PRICE)}>
+            Preço: Menor - maior
+          </li>
+          <li onClick={() => handleUpdate(PriorityTypes.POPOULARITY)}>
+            Mais vendidos
+          </li>
         </PriorityFilter>
       )}
     </FilterContainer>
