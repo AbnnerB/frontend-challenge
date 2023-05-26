@@ -7,7 +7,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
 const fetcher = (): AxiosPromise<ProductsFetchResponse> => {
   return axios.post(API_URL, {
     query: `
-        query{
+        query {
             allProducts {
                 id
                 name
