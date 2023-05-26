@@ -2,6 +2,16 @@
 
 import { useProducts } from "@/hooks/useProducts";
 import ProductCard from "./productCard";
+import { styled } from "styled-components";
+
+const ListContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 256px);
+  grid-gap: 32px;
+  max-width: 100%;
+
+  margin-top: 32px;
+`;
 
 export default function ProductsList() {
   const { data } = useProducts();
@@ -9,7 +19,7 @@ export default function ProductsList() {
   console.log(data);
 
   return (
-    <div>
+    <ListContainer>
       {data?.map((product) => (
         <ProductCard
           key={product.id}
@@ -18,6 +28,6 @@ export default function ProductsList() {
           image={product.image_url}
         />
       ))}
-    </div>
+    </ListContainer>
   );
 }

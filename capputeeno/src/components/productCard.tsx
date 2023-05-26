@@ -1,3 +1,4 @@
+import { formattedValue } from "@/utils/format-price";
 import { styled } from "styled-components";
 
 interface ProductCardProps {
@@ -16,6 +17,8 @@ const Card = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   width: 256px;
+
+  overflow: hidden;
 
   img {
     width: 256px;
@@ -36,6 +39,14 @@ const Card = styled.div`
     color: var(--shapes-dark);
   }
 
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 8px 0;
+  }
+
   span {
     width: 228px;
     height: 1px;
@@ -48,9 +59,11 @@ export default function ProductCard(props: ProductCardProps) {
   return (
     <Card>
       <img src={props.image} alt="imagemFundo" />
-      <h3>{props.title}</h3>
-      <span></span>
-      <p>{props.price}</p>
+      <div>
+        <h3>{props.title}</h3>
+        <span></span>
+        <p>{formattedValue(props.price)}</p>
+      </div>
     </Card>
   );
 }

@@ -31,6 +31,8 @@ const FilterContainer = styled.div`
 const PriorityFilter = styled.ul`
   width: 178px;
 
+  z-index: 3;
+
   position: absolute;
   top: 130%;
 

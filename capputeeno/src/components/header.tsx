@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import { Saira_Stencil_One } from "next/font/google";
 import { PrimaryInputWithSearchIcon } from "./primaryInput";
 import CartControl from "./cart-control";
+import { useFilter } from "@/hooks/useFilter";
 
 const sairaStencil = Saira_Stencil_One({
   weight: ["400"],
@@ -35,11 +36,17 @@ const Logo = styled.a`
 interface HeaderProps {}
 
 export default function Header(props: HeaderProps) {
+  const { setSearch, search } = useFilter();
+
   return (
     <TagHeader>
       <Logo className={sairaStencil.className}>Capputeeno</Logo>
       <div>
-        <PrimaryInputWithSearchIcon placeholder="Procurando por algo especifico?" />
+        <PrimaryInputWithSearchIcon
+          value={search}
+          handleChange={setSearch}
+          placeholder="Procurando por algo especifico?"
+        />
         <CartControl />
       </div>
     </TagHeader>
