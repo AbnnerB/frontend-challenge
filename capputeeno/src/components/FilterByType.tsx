@@ -18,7 +18,8 @@ const FilterItem = styled.li<FilterItemProps>`
   color: var(--text-dark);
   text-transform: uppercase;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 12px;
+  line-height: 18px;
   font-weight: ${(props) => (props.selected ? "600" : "400")};
 
   text-align: center;
@@ -27,6 +28,11 @@ const FilterItem = styled.li<FilterItemProps>`
 
   border-bottom: ${(props) =>
     props.selected ? "4px solid var(--orange-low)" : ""};
+
+  @media screen and (min-width: ${(props) => props.theme.desktopBreakpoint}) {
+    font-size: 16px;
+    line-height: 22px;
+  }
 `;
 
 export default function FilterByType() {
