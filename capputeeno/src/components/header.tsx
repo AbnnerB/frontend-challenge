@@ -35,6 +35,7 @@ const Logo = styled.a`
   font-size: 20px;
   font-weight: 400;
   line-height: 150%;
+  text-decoration: none;
 
   @media screen and (min-width: ${(props) => props.theme.tabletBreakpoint}) {
     font-size: 24px;
@@ -45,14 +46,14 @@ const Logo = styled.a`
   }
 `;
 
-interface HeaderProps {}
-
-export default function Header(props: HeaderProps) {
+export default function Header() {
   const { setSearch, search } = useFilter();
 
   return (
     <TagHeader>
-      <Logo className={sairaStencil.className}>Capputeeno</Logo>
+      <Logo className={sairaStencil.className} href="/">
+        Capputeeno
+      </Logo>
       <div>
         <PrimaryInputWithSearchIcon
           value={search}
